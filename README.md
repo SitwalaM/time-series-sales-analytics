@@ -15,11 +15,13 @@ The project demonstrates basic time-series predictions and implementation of a d
 | [write_segments.py](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/scripts/write_segments.py) | Updates the main sql table "segments" to local database |
 
 # Dataset
-The project uses an anonymized dataset from a beauty shop in Lusaka, Zambia. The sale amounts (total) are also scaled to protect the business. dataset columns:
+The project uses an anonymized dataset from a beauty shop in Lusaka, Zambia. The sale amounts (total) are also scaled to keep the business information private. dataset columns:
 
 * **Date**: Hourly timestamp of customer purchases 
 * **Customer**: Customer ID 
 *  **Total**: Amount purchased.
+
+The plot below shows the full plot of the dataset, it contains a timestamp of when each transaction was made.
 
 ![times-series](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/time_plot.png)
 
