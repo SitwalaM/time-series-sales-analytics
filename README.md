@@ -21,7 +21,41 @@ The project uses an anonymized dataset from a beauty shop in Lusaka, Zambia. The
 * **Customer**: Customer ID 
 *  **Total**: Amount purchased.
 
+![times-series](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/time_plot.png)
+
 # Loading dataset into MySQL Database
+
+The data is loaded into a local MySQL database using python, after which Tableau is used to connect to the data for the dashboard. [sqlalchemy](https://www.sqlalchemy.org/) makes it easy to load data straight to MySQL databases. The following code shows an example of loading the main table to the database;
+
+```Bash
+import pandas as pd
+import sqlalchemy
+from sqlalchemy import create_engine
+ 
+#database credentials and details 
+user = 'root'
+passw = '******'  #insert your password here
+host =  'localhost'
+port = 3306
+database = 'salon_analytics'
+
+#read original customer data
+customer_data = pd.read_csv("data.csv", decimal=".")
+customer_data['Date']=pd.to_datetime(customer_data['Date'].astype(str))
+
+database_connection = create_engine('mysql+mysqlconnector://{0}:{1}@{2}/{3}'.
+                                               format(user, passw, 
+                                                      host, database), pool_recycle=1, pool_timeout=57600).connect()
+customer_data.to_sql(con=database_connection, 
+                     name='sales', 
+                     if_exists='replace',
+                     dtype = {"Date": sqlalchemy.types.DateTime() ,
+                              "Customer": sqlalchemy.types.VARCHAR(length=255),
+                              "Total": sqlalchemy.types.Numeric
+                              },
+                     chunksize=1000)
+
+```
 
 
 # Time-Series Modelling
