@@ -26,3 +26,10 @@ The project uses an anonymized dataset from a beauty shop in Lusaka, Zambia. The
 ## LSTM
 
 # Customer Segmentation using RFM (Recency, Frequency, Monetary)
+
+# License
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
+# References
+
