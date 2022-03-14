@@ -66,7 +66,10 @@ Forecast were performed using three models: [Prophet](https://facebook.github.io
 
 ## Prophet
 
-Prophet is an open source procedure for fitting time-series. It decomposes the trend, seasonality and cyclic behaviour of a time-series. Our data in this case is highly seasonal at a weakly basis, the best days for sales are Sunday. The data also showed a sudden increase in trend due to change in Covid-19 restrictions. Further details and full code of the predictions can be found [in this notebook](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/salon_analytics_predictions.ipynb). The main components of the time-series Zambian holidays are shown below.
+Prophet(https://facebook.github.io/prophet/) is an open source procedure for fitting time-series. It decomposes the trend, seasonality and cyclic behaviour of a time-series. Our data in this case is highly seasonal at a weakly basis, the best days for sales are Sunday. The data also showed a sudden increase in trend due to change in Covid-19 restrictions. Further details and full code of the predictions can be found [in this notebook](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/salon_analytics_predictions.ipynb). The main components of the time-series Zambian holidays are shown below,
+
+![decompose](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/prophet_decompose.PNG)
+
 
 ### Modeling
 
@@ -80,15 +83,42 @@ m.fit(train)
 ```
 The model can be improved by varying the change point range and manually adding the fourier order of the seasonality for your specific series. The parameters above improved the predictions.
 
-### Results
+### Prophet Results
 
 |**mean absolute error MAE:**| 92.5 |
 |---|---|
-|**mean absolute percentage error MAPE:**| 0.5 |
+|**mean absolute percentage error MAPE:**| **0.5** |
 
 ![prophet_prediction](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/prophet_with_conf.png)
 
 ## xGBoost
+
+![ Extreme Gradient Boosting (xGBoost)](https://xgboost.readthedocs.io/en/stable/) is normally the go to algorithm for tabular data as it produces good results in short prediction times. 
+
+### Modelling
+
+For xGBoost, the days of the week were one-hot encoded as the sales are highly dependant on what day of the week it is. The one-hot encoding was done as follows before splitting the into training and testing set,
+
+```Bash
+
+# Add days of the week to the dataframe
+grouped_day["day_of_week"] = grouped_day['Date'].dt.strftime("%A")
+
+# add one hot encoding for the days
+encodes = pd.get_dummies(grouped_day["day_of_week"])
+grouped_day2 = pd.concat([encodes,grouped_day.drop("day_of_week", axis=1)], axis=1)
+
+# The last column of the encoding can then be removed as it becomes redundant 
+```
+Full code and details of the training can be found in [this notebook](salon_analytics_predictions.ipynb).
+
+### xGBoost Results
+
+|**mean absolute error MAE:**| 117 |
+|---|---|
+|**mean absolute percentage error MAPE:**| **0.41** |
+
+![xGBoost_Plot](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/xgboost_pred.png)
 
 ## LSTM
 
