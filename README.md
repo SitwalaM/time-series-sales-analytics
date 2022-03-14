@@ -71,7 +71,7 @@ Prophet(https://facebook.github.io/prophet/) is an open source procedure for fit
 ![decompose](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/prophet_decompose.PNG)
 
 
-### Modeling
+### Prophet Modeling
 
 The following parameters were used to fit the prophet model
 ```Bash
@@ -95,7 +95,7 @@ The model can be improved by varying the change point range and manually adding 
 
 ![ Extreme Gradient Boosting (xGBoost)](https://xgboost.readthedocs.io/en/stable/) is normally the go to algorithm for tabular data as it produces good results in short prediction times. 
 
-### Modelling
+### xGBoost Modelling
 
 For xGBoost, the days of the week were one-hot encoded as the sales are highly dependant on what day of the week it is. The one-hot encoding was done as follows before splitting the into training and testing set,
 
@@ -120,7 +120,30 @@ Full code and details of the training can be found in [this notebook](salon_anal
 
 ![xGBoost_Plot](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/xgboost_pred.png)
 
-## LSTM
+## Long short-term memory (LSTM) artificial recurrent neural network (RNN)
+
+Forecast was also carried out using an RNN implement LSTMs. LSTMs are efficient at capturing long-term temporal dependencies in the presence of noise. The inner workings and description of the neurons in an LSTM RNN can be found [here.](https://towardsdatascience.com/lstm-neural-network-the-basic-concept-a9ba225616f7)
+
+### LSTM Modelling
+
+A baseline network was used on the time-series using a Vanilla LSTM (single hidden layer and an output layer). The baseline model is defined as follows,
+
+```Bash
+model = Sequential()
+model.add(LSTM(100, activation='tanh', input_shape=(n_input, n_features)))
+model.add(Dense(1))
+model.compile(optimizer='adam', loss='mape', metrics = "mae")
+```
+More details of the pre-processing and modelling can be fount in the [notebook](salon_analytics_predictions.ipynb). A good intuition of how to pre-process the series using [tf.keras.preprocessing.sequence.TimeseriesGenerator](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/TimeseriesGenerator) can be found in the [YoutTube tutoial](https://www.youtube.com/watch?v=S8tpSG6Q2H0).
+
+### LSTM Results
+
+|**mean absolute error MAE:**| 176 |
+|---|---|
+|**mean absolute percentage error MAPE:**| **0.51** |
+
+![LSTM prediction](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/lstm_pred.png)
+
 
 # Customer Segmentation using RFM (Recency, Frequency, Monetary)
 
@@ -130,4 +153,6 @@ Full code and details of the training can be found in [this notebook](salon_anal
 
 # References
 1. [YouTube Tableau Tutorial](https://www.youtube.com/watch?v=cmuJ0IhDo7o)
+2. [LSTM RNNs](https://towardsdatascience.com/lstm-neural-network-the-basic-concept-a9ba225616f7)
+3. [YouTube LSTM tutorial](https://www.youtube.com/watch?v=S8tpSG6Q2H0)
 
