@@ -155,6 +155,12 @@ Customer segmentation is critical in tracking customer behaviour and, customizin
 
 KMeans Clustering was used to group the customers based on the three metrics. Four clusters were chosen based on the knee plot and typical number of segments usually seen for this type of sales data. The summary of the segments metrics are,
 
+![segments_summary](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/segments_summary.PNG)
+
+![Clustering Results](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/segments.png)
+
+The outlier customer on the far right is due to customers who regitered as "unknown" in the database.
+
 
 
 
