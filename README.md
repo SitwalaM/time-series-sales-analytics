@@ -150,7 +150,7 @@ More details of the pre-processing and modelling can be fount in the [notebook](
 Customer segmentation is critical in tracking customer behaviour and, customizing retention stragies and promotions for different groups of customers. Here we use the recency, frequency (RFM) and monetary metrics for each customer, details can be found [in this notebook.](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/customer_segmentation.ipynb)
 
 * Recency: How Long ago did the customer make a purchase (calculated in days)
-* Frequency: The count of different days the customer made a purchase
+* Frequency: The count of number of times on different days the customer made a purchase
 * Monetary: The total spend by the customer
 
 KMeans Clustering was used to group the customers based on the three metrics. Four clusters were chosen based on the knee plot and typical number of segments usually seen for this type of sales data. The summary of the segments metrics are,
