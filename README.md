@@ -161,6 +161,9 @@ KMeans Clustering was used to group the customers based on the three metrics. Fo
 
 The outlier customer on the far right is due to customers who regitered as "unknown" in the database.
 
+# Dashboard
+
+[Dashboard here](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/dashboard_capture2.PNG)
 
 
 
@@ -169,6 +172,7 @@ The outlier customer on the far right is due to customers who regitered as "unkn
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 # References
+
 1. [YouTube Tableau Tutorial](https://www.youtube.com/watch?v=cmuJ0IhDo7o)
 2. [LSTM RNNs](https://towardsdatascience.com/lstm-neural-network-the-basic-concept-a9ba225616f7)
 3. [YouTube LSTM tutorial](https://www.youtube.com/watch?v=S8tpSG6Q2H0)
