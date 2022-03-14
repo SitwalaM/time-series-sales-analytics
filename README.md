@@ -1,6 +1,6 @@
 # Introduction
 
-The project demonstrates basic time-series predictions and implementation of a dashboard using Tableau. The project was part of the [The Africa Data Science Intensive (DSI) program](http://dsi-program.com/). Softare used for this project;
+The project demonstrates basic time-series predictions and implementation of a dashboard using Tableau. The project was part of the [The Africa Data Science Intensive (DSI) program](http://dsi-program.com/). Softare used for this project:
 * MySQL
 * Python
 * Tableau
@@ -27,7 +27,7 @@ The plot below shows the full plot of the dataset, it contains a timestamp of wh
 
 # Loading dataset into MySQL Database
 
-The data is loaded into a local MySQL database using python, after which Tableau is used to connect to the data for the dashboard. [sqlalchemy](https://www.sqlalchemy.org/) makes it easy to load data straight to MySQL databases. The following code shows an example of loading the main table to the database;
+The data is loaded into a local MySQL database using python, after which Tableau is used to connect to the data for the dashboard. [sqlalchemy](https://www.sqlalchemy.org/) makes it easy to load data straight to MySQL databases. The following code shows an example of loading the main table to the database:
 
 ```Bash
 import pandas as pd
@@ -62,7 +62,31 @@ customer_data.to_sql(con=database_connection,
 
 # Time-Series Modelling
 
+Forecast were performed using three models: [Prophet](https://facebook.github.io/prophet/), [xGBoost](https://xgboost.readthedocs.io/en/stable/) and [LSTM ](https://en.wikipedia.org/wiki/Long_short-term_memory). A forecast size of 7 days was used as the samplesize of the dataset is too small (15 months) for a mothly horizon.
+
 ## Prophet
+
+Prophet is an open source procedure for fitting time-series. It decomposes the trend, seasonality and cyclic behaviour of a time-series. Our data in this case is highly seasonal at a weakly basis, the best days for sales are Sunday. The data also showed a sudden increase in trend due to change in Covid-19 restrictions. Further details and full code of the predictions can be found [in this notebook](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/salon_analytics_predictions.ipynb). The main components of the time-series Zambian holidays are shown below.
+
+### Modeling
+
+The following parameters were used to fit the prophet model
+```Bash
+m = Prophet(interval_width=0.95, weekly_seasonality=False, 
+            seasonality_mode = 'multiplicative', 
+            holidays= zambia_holidays, 
+            changepoint_range=0.8).add_seasonality(name="weekly", period= 7, fourier_order= 25)
+m.fit(train)
+```
+The model can be improved by varying the change point range and manually adding the fourier order of the seasonality for your specific series. The parameters above improved the predictions.
+
+### Results
+
+|**mean absolute error MAE:**| 92.5 |
+|---|---|
+|**mean absolute percentage error MAPE:**| 0.5 |
+
+![prophet_prediction](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/prophet_with_conf.png)
 
 ## xGBoost
 
