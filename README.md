@@ -163,7 +163,7 @@ The outlier customer on the far right is due to customers who regitered as "unkn
 
 # Dashboard
 
-[Dashboard here](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/dashboard_capture2.PNG)
+![Dashboard here](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/dashboard_capture2.PNG)
 
 
 
