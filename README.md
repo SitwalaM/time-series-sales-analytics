@@ -9,7 +9,7 @@ The project demonstrates basic time-series predictions and implementation of a d
 | File | Description |
 |---|---|
 | [salon_analytics_predictions.ipynb](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/salon_analytics_predictions.ipynb) |  Contains the time-series predictions using Prophet, xGBoost and LSTM|
-| [customer_segmentation.ipynb](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/customer_segmentation.ipynb) | contains customer segmentation using RFM (Recency, Frequency and Monetary) |
+| [customer_segmentation.ipynb](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/notebooks/customer_segmentation.ipynb) | Contains customer segmentation using RFM (Recency, Frequency and Monetary) |
 | [write_main_table.py](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/scripts/write_main_table.py)|Updates the main sql table "salon_analytics" to local database |
 | [write_forecast.py](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/scripts/write_forecast.py)|Updates the main sql table "forecasts" to local database |
 | [write_segments.py](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/scripts/write_segments.py) | Updates the main sql table "segments" to local database |
@@ -62,7 +62,7 @@ customer_data.to_sql(con=database_connection,
 
 # Time-Series Modelling
 
-Forecast were performed using three models: [Prophet](https://facebook.github.io/prophet/), [xGBoost](https://xgboost.readthedocs.io/en/stable/) and [Long short-term memory (LSTM) artificial recurrent neural network (RNN)](https://en.wikipedia.org/wiki/Long_short-term_memory). A forecast size of 7 days was used as the samplesize of the dataset is too small (15 months) for a mothly horizon.
+Forecast were performed using three models: [Prophet](https://facebook.github.io/prophet/), [xGBoost](https://xgboost.readthedocs.io/en/stable/) and [Long short-term memory (LSTM) artificial recurrent neural network (RNN)](https://en.wikipedia.org/wiki/Long_short-term_memory). A forecast size of 7 days was used as the samplesize of the dataset is too small (15 months) for a monthly horizon.
 
 ## Prophet
 
@@ -159,7 +159,7 @@ KMeans Clustering was used to group the customers based on the three metrics. Fo
 
 ![Clustering Results](https://github.com/SitwalaM/time-series-sales-analytics/blob/main/images/segments.png)
 
-The outlier customer on the far right is due to customers who regitered as "unknown" in the database.
+The outlier customer on the far right is due to customers who registered as "unknown" in the database.
 
 # Dashboard
 
